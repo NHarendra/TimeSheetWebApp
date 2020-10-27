@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TimeSheetWebApi.DataBaseCtxt;
+using TimeSheetWebApi.Repository;
 
 namespace TimeSheetWebApi
 {
@@ -32,7 +33,7 @@ namespace TimeSheetWebApi
 
             services.AddMvc();
             services.AddScoped<DatabaseContext>();
-            //services.AddScoped(typeof(IRepository<>), typeof(RepositoryClass<>));
+            services.AddScoped(typeof(IRepository<>), typeof(RepositoryClass<>));
             services.AddControllers();
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
