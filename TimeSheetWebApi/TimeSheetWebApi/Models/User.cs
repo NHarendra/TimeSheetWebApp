@@ -12,5 +12,7 @@ namespace TimeSheetWebApi.Models
         public virtual String PhoneNumber { get; set; }
         public virtual bool IsActive { get; set; }
 
+        public virtual String Designation { get; set; }
+
     }
 }
