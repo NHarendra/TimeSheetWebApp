@@ -22,14 +22,16 @@
         <div class="col-lg-6 kt-margin-t-25">
             <label for="hoursworked"> Email  </label>
             <input type="text" name="email " id="email" class="form-control" #email="ngModel"
-                [(ngModel)]="userObj.email"  
+                [(ngModel)]="userObj.email"  pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,4}\S$"
                 placeholder="Enter Email" required="true" />
+                <span class="text-danger" *ngIf="email.hasError('pattern')">Email format should be example@abc.com</span>
         </div>
         <div class="col-lg-6 kt-margin-t-25">
             <label for="hoursworked">Phone Number </label>
             <input type="text" name="phoneNumber " id="phoneNumber" class="form-control" #phoneNumber="ngModel"
                 [(ngModel)]="userObj.phoneNumber"  
-                placeholder="Enter Phone Number" required="true"/>
+                placeholder="Enter Phone Number" pattern="[6-9]{1}[0-9]{9}" minlength="10" maxlength="10" required="true"/>
+                <span class="text-danger" *ngIf="phoneNumber.hasError('pattern')">Please enter a valid Phone Number</span>
         </div>
     </div>
 
