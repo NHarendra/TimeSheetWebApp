@@ -68,6 +68,7 @@ export class CreateEditUserComponent implements OnInit {
       });
      }else{
       this.timeServiceProxy.postUser(this.userObj).subscribe((data: any) => {
+        this.router.navigate(['users']);
         this.toaster.success(AppConsts.successSavedMsg, '',
         {timeOut: 3000});
       }, error => { 

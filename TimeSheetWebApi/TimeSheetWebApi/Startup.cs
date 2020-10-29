@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TimeSheetWebApi.DataBaseCtxt;
+using TimeSheetWebApi.GlobalException;
 using TimeSheetWebApi.Repository;
 
 namespace TimeSheetWebApi
@@ -32,6 +33,11 @@ namespace TimeSheetWebApi
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc();
+            services.AddMvc(
+             config => {
+                 config.Filters.Add(typeof(GlobalExceptionFilter));
+                       }
+                );
             services.AddScoped<DatabaseContext>();
             services.AddScoped(typeof(IRepository<>), typeof(RepositoryClass<>));
             services.AddControllers();

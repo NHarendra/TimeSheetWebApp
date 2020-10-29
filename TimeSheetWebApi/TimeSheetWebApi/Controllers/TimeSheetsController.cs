@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeSheetWebApi.DataBaseCtxt;
+using TimeSheetWebApi.GlobalException;
 using TimeSheetWebApi.Models;
 using TimeSheetWebApi.Repository;
 
@@ -28,7 +29,21 @@ namespace TimeSheetWebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<TimeSheet> GetAllTimeSheets() => TimeSheetRepository.GetAll().Include("UserFk").OrderByDescending(w=>w.Id);
+        public IEnumerable<TimeSheet> GetAllTimeSheets()
+        {
+            IEnumerable<TimeSheet> returnObj = null;
+            try
+            {
+                returnObj = TimeSheetRepository.GetAll().Include("UserFk").OrderByDescending(w => w.Id);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+            return returnObj;
+           
+
+        }
 
         [HttpGet]
         [Route("{TimeSheetId}")]
@@ -40,19 +55,46 @@ namespace TimeSheetWebApi.Controllers
         // public void AddTimeSheet([FromBody] TimeSheet TimeSheet) => TimeSheetRepository.Insert(TimeSheet);
         public void AddTimeSheet([FromBody] TimeSheet TimeSheet)
         {
-            TimeSheet.StartDateTime = Convert.ToDateTime(TimeSheet.StartDateTime).AddHours(5).AddMinutes(30);
-            TimeSheetRepository.Insert(TimeSheet);
+            try
+            {
+                TimeSheet.StartDateTime = Convert.ToDateTime(TimeSheet.StartDateTime).AddHours(5).AddMinutes(30);
+                TimeSheetRepository.Insert(TimeSheet);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
         }
 
         [HttpPut]
         [Route("")]
         [AllowAnonymous]
-        public void UpdateTimeSheet([FromBody] TimeSheet TimeSheet) => TimeSheetRepository.Update(TimeSheet);
+        public void UpdateTimeSheet([FromBody] TimeSheet TimeSheet)
+        {
+            try
+            {
+                TimeSheetRepository.Update(TimeSheet);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+        }
 
         [HttpDelete]
         [Route("{TimeSheetId}")]
         [AllowAnonymous]
-        public void DeleteTimeSheet(int TimeSheetId) => TimeSheetRepository.Delete(TimeSheetId);
+        public void DeleteTimeSheet(int TimeSheetId)
+        {
+            try
+            {
+                TimeSheetRepository.Delete(TimeSheetId);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+        }
 
         /************************************ End all Curd logic from here **************************************************/
 

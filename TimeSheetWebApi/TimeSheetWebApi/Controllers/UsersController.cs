@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using TimeSheetWebApi.GlobalException;
 using TimeSheetWebApi.Models;
 using TimeSheetWebApi.Repository;
 
@@ -30,26 +31,80 @@ namespace TimeSheetWebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<User> GetAllUsers() => UserRepository.GetAll().Where(w=>w.FullName != null && w.Email != null && w.Designation != null).OrderByDescending(e => e.Id);
+        public IEnumerable<User> GetAllUsers() {
+            IEnumerable<User> returnObj = null;
+            try
+            {
+                returnObj = UserRepository.GetAll().Where(w => w.FullName != null && w.Email != null && w.Designation != null).OrderByDescending(e => e.Id);
+            }
+            catch(Exception ex)
+            {
+                 throw new MyAppException(ex.Message);
+            }
+            return returnObj;
+         }
+
 
         [HttpGet]
         [Route("{UserId}")]
-        public User GetUserById(int UserId) => UserRepository.GetById(UserId);
+        public User GetUserById(int UserId)
+        {
+            User returnObj = null;
+            try
+            {
+                returnObj = UserRepository.GetById(UserId);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+            return returnObj;
+        }
 
         [HttpPost]
         [Route("")]
         [AllowAnonymous]
-        public void AddUser([FromBody] User User) => UserRepository.Insert(User);
+        public void AddUser([FromBody] User User)
+        {
+            try
+            {
+                UserRepository.Insert(User);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+        }
 
         [HttpPut]
         [Route("")]
         [AllowAnonymous]
-        public void UpdateUser([FromBody] User User) => UserRepository.Update(User);
+        public void UpdateUser([FromBody] User User)
+        {
+            try
+            {
+                UserRepository.Update(User);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+        }
 
         [HttpDelete]
         [Route("{UserId}")]
         [AllowAnonymous]
-        public void DeleteUser(int UserId) => UserRepository.Delete(UserId);
+        public void DeleteUser(int UserId)
+        {
+            try
+            {
+                UserRepository.Delete(UserId);
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
+        }
 
         /************************************ End all Curd logic from here **************************************************/
 
@@ -60,7 +115,14 @@ namespace TimeSheetWebApi.Controllers
         {
             LookupDto retObj = new LookupDto();
             List<LookupDto> retObjList = new List<LookupDto>();
-            retObjList = UserRepository.GetAll().Where(w=>w.IsActive == true).Select(s=> new LookupDto { label=s.FullName,value=s.Id }).ToList();
+            try
+            {
+                retObjList = UserRepository.GetAll().Where(w => w.IsActive == true).Select(s => new LookupDto { label = s.FullName, value = s.Id }).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new MyAppException(ex.Message);
+            }
             return retObjList;
         }
 

@@ -51,7 +51,6 @@ D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\bin\Debug
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.csprojAssemblyReference.cache
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.AssemblyInfoInputs.cache
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.AssemblyInfo.cs
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.csproj.CoreCompileInputs.cache
