@@ -25,11 +25,11 @@ export class TimeSheetCreateComponent implements OnInit {
   //Oninit Life Cycle hook started
   ngOnInit() {
 
+    // get user lookup data for dropdown
     this.timeServiceProxy.getUserLookup().subscribe((data: any) => {
       this.userLookup = data;
     }, error => {
-      this.toaster.error(AppConsts.errorMsg, '',
-      {timeOut: 3000});
+      this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
     });
 
     //catch id from url if passed from previous component
@@ -38,8 +38,7 @@ export class TimeSheetCreateComponent implements OnInit {
     // get timesheet data for update purpose iff timesheetid available
     if (parseInt(this.timesheetId) > 0) {
       this.timeServiceProxy.getTimeSheet(parseInt(this.timesheetId) ).subscribe((data: any) => {
-        this.toaster.success(AppConsts.successFetchDataMsg, '',
-        {timeOut: 3000});
+        this.toaster.success(AppConsts.successFetchDataMsg,'',{timeOut: 3000});
         this.timeSheetObj = data;
         //check wheather date is not null or not
         if(this.timeSheetObj.startDateTime != null){
@@ -47,8 +46,7 @@ export class TimeSheetCreateComponent implements OnInit {
         this.startdtime = new Date(dates);
         }
       }, error => { 
-        this.toaster.error(AppConsts.errorMsg, '',
-        {timeOut: 3000});
+        this.toaster.error(AppConsts.errorMsg,'',{timeOut: 3000});
       });
     }
   }
@@ -66,21 +64,17 @@ export class TimeSheetCreateComponent implements OnInit {
         this.timeServiceProxy.updateTimeSheet(this.timeSheetObj).subscribe((data: any) => {
           this.timeSheetObj = data;
           this.router.navigate(['home']);
-          this.toaster.success(AppConsts.successUpdatedMsg, '',
-          {timeOut: 3000});
+          this.toaster.success(AppConsts.successUpdatedMsg, '',{timeOut: 3000});
         }, error => {
-          this.toaster.error(AppConsts.errorMsg, '',
-          {timeOut: 3000});
+          this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
           });
-      }else{
+        }else{
         this.timeServiceProxy.postTimeSheet(this.timeSheetObj).subscribe((data: any) => {
           this.timeSheetObj = data;
           this.router.navigate(['home']);
-          this.toaster.success(AppConsts.successFetchDataMsg, '',
-          {timeOut: 3000});
+          this.toaster.success(AppConsts.successFetchDataMsg, '',{timeOut: 3000});
         }, error => { 
-          this.toaster.error(AppConsts.errorMsg, '',
-          {timeOut: 3000});
+          this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
         });
       }
   }

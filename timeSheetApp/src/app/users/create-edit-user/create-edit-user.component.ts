@@ -11,6 +11,7 @@ import { AppConsts } from 'src/app/appConstant';
 })
 export class CreateEditUserComponent implements OnInit {
   
+  //Global variable
   timeSheetObj = <TimeSheetDto>{};
   userObj = <UserDto>{};
   userId:any;
@@ -20,17 +21,18 @@ export class CreateEditUserComponent implements OnInit {
   //Constructor Call
   constructor(private router: Router,  private route: ActivatedRoute, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
+  //Onint life cycle hook started
   ngOnInit() {
 
+    //Designation lookup for dropdown
     this.designations = [
       {label: 'CEO', value: 'CEO'},
       {label: 'Manager', value: 'Manager'},
       {label: 'Team Lead', value: 'Team Lead'},
       {label: 'QA', value: 'QA'},
       {label: 'Senior Developer', value: 'Senior Developer'},
-      {label: ' Developer', value: ' Developer'},
-    
-  ];
+      {label: ' Developer', value: ' Developer'}
+     ];
 
       //catch id from url if passed from previous component
       this.userId = this.route.snapshot.paramMap.get('id');
@@ -39,12 +41,10 @@ export class CreateEditUserComponent implements OnInit {
       if (parseInt(this.userId) > 0) {
         this.timeServiceProxy.getUser(parseInt(this.userId)).subscribe((data: any) => {
           this.userObj = data;
-          this.toaster.success(AppConsts.successFetchDataMsg, '',
-          {timeOut: 3000});
+          this.toaster.success(AppConsts.successFetchDataMsg, '',{timeOut: 3000});
         }, error => {
-          this.toaster.error(AppConsts.errorMsg, '',
-          {timeOut: 3000});
-           });
+          this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
+        });
       }
   }
 
@@ -60,20 +60,16 @@ export class CreateEditUserComponent implements OnInit {
      if(this.userObj.id > 0){
       this.timeServiceProxy.updateUser(this.userObj).subscribe((data: any) => {
         this.router.navigate(['users']);
-        this.toaster.success(AppConsts.successUpdatedMsg, '',
-        {timeOut: 3000});
+        this.toaster.success(AppConsts.successUpdatedMsg, '',{timeOut: 3000});
       }, error => { 
-        this.toaster.error(AppConsts.errorMsg, '',
-        {timeOut: 3000});
+        this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
       });
      }else{
       this.timeServiceProxy.postUser(this.userObj).subscribe((data: any) => {
         this.router.navigate(['users']);
-        this.toaster.success(AppConsts.successSavedMsg, '',
-        {timeOut: 3000});
+        this.toaster.success(AppConsts.successSavedMsg, '',{timeOut: 3000});
       }, error => { 
-        this.toaster.error(AppConsts.errorMsg, '',
-        {timeOut: 3000});
+        this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
        });
      }
 }

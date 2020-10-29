@@ -65,9 +65,6 @@ export class TimesheetService {
     return this.http.put<any>(baseUrl + "/TimeSheets", model, httpOptions);
   }
 
-
-
-
 }
 
 export interface IUserDto {

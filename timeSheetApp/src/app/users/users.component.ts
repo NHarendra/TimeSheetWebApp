@@ -18,27 +18,27 @@ export class UsersComponent implements OnInit {
 
 
   //Constructor Call
-  constructor(private router: Router, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
+  constructor(private router: Router, private timeServiceProxy: TimesheetService, private toaster: ToastrService) { }
 
   //Oninit Life Cycle hook started
   ngOnInit() {
 
-        // Columns initialized
-        this.cols = [
-          { field: 'fullName', header: 'Name' },
-          { field: 'designation', header: 'Deignation' },
-          { field: 'email', header: 'email' },
-          { field: 'phoneNumber', header: 'phoneNumber' },
-        ];
+    // Columns initialized
+    this.cols = [
+      { field: 'fullName', header: 'Name' },
+      { field: 'designation', header: 'Deignation' },
+      { field: 'email', header: 'email' },
+      { field: 'phoneNumber', header: 'phoneNumber' },
+    ];
 
     // Fetch all users data 
     this.timeServiceProxy.getUsers().subscribe((data: any) => {
       this.userObj = data;
       this.toaster.success(AppConsts.successFetchDataMsg, '',
-      {timeOut: 3000});
-    }, error => { 
+        { timeOut: 3000 });
+    }, error => {
       this.toaster.error(AppConsts.errorMsg, '',
-      {timeOut: 3000});
+        { timeOut: 3000 });
     });
 
 
@@ -58,7 +58,3 @@ export class UsersComponent implements OnInit {
 
 }
 
-interface Book {
-  label: string;
-  value: string;
-}

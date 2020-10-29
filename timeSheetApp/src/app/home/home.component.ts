@@ -21,14 +21,12 @@ export class HomeComponent implements OnInit {
   //Oninit Life Cycle hook started
   ngOnInit() {
 
-    // Fetch all data of timesheet 
+    //Fetch all data of timesheet 
     this.timeServiceProxy.getTimeSheetes().subscribe((data: any) => {
       this.timeSheetObj = data;
-      this.toaster.success(AppConsts.successFetchDataMsg, '',
-          {timeOut: 3000});
-    }, error => { 
-      this.toaster.error('some error cooured please contact with admin!', '',
-      {timeOut: 3000});
+      this.toaster.success(AppConsts.successFetchDataMsg, '',{timeOut: 3000});
+     }, error => { 
+      this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
      });
 
     // Columns initialized

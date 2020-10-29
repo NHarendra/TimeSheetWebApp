@@ -5,6 +5,7 @@
 <form style="margin-top: 40px;" #timeSheetForm="ngForm" (ngSubmit)="timeSheetForm.form.valid && saveTimeSheet()" autocomplete="off" novalidate>
 
     <div class="form-group row">
+
         <div class="col-lg-6 kt-margin-t-25">
             <label for="user">Select User <i class="text-danger">*</i></label>
             <p-dropdown [options]="userLookup" [(ngModel)]="timeSheetObj.userId" #exam_type="ngModel"
@@ -32,9 +33,7 @@
 
     <div class="row">
         <div class="col-lg-12 text-center">
-            <button type="submit" [disabled]="timeSheetForm.invalid" style="margin-right: 10px;"
-                class="btn btn-primary btn-pill"><i class="fa fa-save"></i>Save</button>
-
+            <button type="submit" [disabled]="timeSheetForm.invalid" style="margin-right: 10px;" class="btn btn-primary btn-pill"><i class="fa fa-save"></i>Save</button>
             <button type="button" class="btn btn-pill btn-info" (click)="cancelFun()">Cancel</button>
         </div>
     </div>
