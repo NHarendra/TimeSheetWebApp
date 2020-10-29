@@ -6,12 +6,9 @@
     sortMode="multiple" [paginator]="true" [rows]="7" [exportFilename]="'UserReport'">
 
     <ng-template pTemplate="caption">
-        <div class="ui-helper-clearfix text-left">
-            <button type="button" class="btn btn-sm btn-success" (click)="dt.exportCSV()"><i
-                    class="fa fa-file"></i>ExportToExcel</button>
 
-        </div>
         <div style="text-align: right">
+            <button type="button" class="btn btn-sm btn-success" (click)="dt.exportCSV()"><i class="fa fa-file"></i>ExportToExcel</button>
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
             <input type="text" pInputText size="50" placeholder="Global Search"
                 (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
@@ -38,7 +35,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-userObj>
         <tr>
-            <td> <a class="btn btn-success btn-sm" (click)="createNewUser(userObj.id)">Edit</a></td>
+            <td> <a class="btn btn-info btn-sm" (click)="createNewUser(userObj.id)">Edit</a></td>
             <td> {{userObj.fullName}} </td>
             <td> {{userObj.designation}}</td>
             <td> {{userObj.email}}</td>
