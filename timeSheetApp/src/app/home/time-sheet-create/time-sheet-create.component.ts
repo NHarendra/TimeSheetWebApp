@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LookupDto, TimeSheetDto, TimeSheetDtoObject, TimesheetService } from 'src/app/timesheet.service';
+import { ToastrService } from 'ngx-toastr';
+import { AppConsts } from 'src/app/appConstant';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-time-sheet-create',
@@ -17,14 +20,17 @@ export class TimeSheetCreateComponent implements OnInit {
   startdtime:any;
   
   //Constructor Call
-  constructor(private router: Router,  private route: ActivatedRoute, private timeServiceProxy: TimesheetService) { }
+  constructor(private router: Router,  private route: ActivatedRoute, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
   //Oninit Life Cycle hook started
   ngOnInit() {
 
     this.timeServiceProxy.getUserLookup().subscribe((data: any) => {
       this.userLookup = data;
-    }, error => { console.log("Something went wrong") });
+    }, error => {
+      this.toaster.error(AppConsts.errorMsg, '',
+      {timeOut: 3000});
+    });
 
     //catch id from url if passed from previous component
     this.timesheetId = this.route.snapshot.paramMap.get('id');
@@ -32,13 +38,18 @@ export class TimeSheetCreateComponent implements OnInit {
     // get timesheet data for update purpose iff timesheetid available
     if (parseInt(this.timesheetId) > 0) {
       this.timeServiceProxy.getTimeSheet(parseInt(this.timesheetId) ).subscribe((data: any) => {
+        this.toaster.success(AppConsts.successFetchDataMsg, '',
+        {timeOut: 3000});
         this.timeSheetObj = data;
         //check wheather date is not null or not
         if(this.timeSheetObj.startDateTime != null){
         var dates = this.timeSheetObj.startDateTime.toString();
         this.startdtime = new Date(dates);
         }
-      }, error => { console.log("Something went wrong") });
+      }, error => { 
+        this.toaster.error(AppConsts.errorMsg, '',
+        {timeOut: 3000});
+      });
     }
   }
 
@@ -49,24 +60,29 @@ export class TimeSheetCreateComponent implements OnInit {
 
   // Save data of timesheet 
   saveTimeSheet(){
-
-        this.timeSheetObj.startDateTime = this.startdtime;
+        var s = moment(this.startdtime);
+        this.timeSheetObj.startDateTime = s;
         if(this.timeSheetObj.id > 0){
         this.timeServiceProxy.updateTimeSheet(this.timeSheetObj).subscribe((data: any) => {
           this.timeSheetObj = data;
           this.router.navigate(['home']);
-          alert("data saved successfully!!")
-        }, error => { console.log("Something went wrong") });
+          this.toaster.success(AppConsts.successUpdatedMsg, '',
+          {timeOut: 3000});
+        }, error => {
+          this.toaster.error(AppConsts.errorMsg, '',
+          {timeOut: 3000});
+          });
       }else{
         this.timeServiceProxy.postTimeSheet(this.timeSheetObj).subscribe((data: any) => {
           this.timeSheetObj = data;
-          alert("data saved successfully!!")
-        }, error => { console.log("Something went wrong") });
+          this.router.navigate(['home']);
+          this.toaster.success(AppConsts.successFetchDataMsg, '',
+          {timeOut: 3000});
+        }, error => { 
+          this.toaster.error(AppConsts.errorMsg, '',
+          {timeOut: 3000});
+        });
       }
   }
 
-}
-interface Book {
-  label: string;
-  value: number;
 }

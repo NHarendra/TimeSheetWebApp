@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimeSheetDto, TimesheetService } from '../timesheet.service';
+import { ToastrService } from 'ngx-toastr';
+import { AppConsts } from '../appConstant';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import { TimeSheetDto, TimesheetService } from '../timesheet.service';
 export class HomeComponent implements OnInit {
 
   //Constructor Call
-  constructor(private router: Router, private timeServiceProxy: TimesheetService) { }
+  constructor(private router: Router, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
   // All Global Variables started
   timeSheetObj: TimeSheetDto[];
@@ -22,7 +24,12 @@ export class HomeComponent implements OnInit {
     // Fetch all data of timesheet 
     this.timeServiceProxy.getTimeSheetes().subscribe((data: any) => {
       this.timeSheetObj = data;
-    }, error => { console.log("Something went wrong") });
+      this.toaster.success(AppConsts.successFetchDataMsg, '',
+          {timeOut: 3000});
+    }, error => { 
+      this.toaster.error('some error cooured please contact with admin!', '',
+      {timeOut: 3000});
+     });
 
     // Columns initialized
     this.cols = [

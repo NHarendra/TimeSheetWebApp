@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimesheetService, UserDto } from '../timesheet.service';
+import { ToastrService } from 'ngx-toastr';
+import { AppConsts } from '../appConstant';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +18,7 @@ export class UsersComponent implements OnInit {
 
 
   //Constructor Call
-  constructor(private router: Router, private timeServiceProxy: TimesheetService) { }
+  constructor(private router: Router, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
   //Oninit Life Cycle hook started
   ngOnInit() {
@@ -32,7 +34,12 @@ export class UsersComponent implements OnInit {
     // Fetch all users data 
     this.timeServiceProxy.getUsers().subscribe((data: any) => {
       this.userObj = data;
-    }, error => { console.log("Something went wrong") });
+      this.toaster.success(AppConsts.successFetchDataMsg, '',
+      {timeOut: 3000});
+    }, error => { 
+      this.toaster.error(AppConsts.errorMsg, '',
+      {timeOut: 3000});
+    });
 
 
 

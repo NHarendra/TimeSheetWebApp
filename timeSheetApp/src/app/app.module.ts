@@ -22,6 +22,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ChartModule} from 'primeng/chart';
 import { CalendarModule } from "primeng/primeng";
 import { EditorModule } from "primeng/primeng";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EditorModule } from "primeng/primeng";
     TableModule,
     DropdownModule,
     ChartModule,
-    CalendarModule
+    CalendarModule,
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [TimesheetService],
   bootstrap: [AppComponent]
