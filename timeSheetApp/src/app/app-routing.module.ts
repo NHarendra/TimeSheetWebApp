@@ -11,9 +11,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
   { path: 'users', component: UsersComponent},
-  { path: 'createEditUser', component: CreateEditUserComponent},
-  { path: 'timeSheetCreate', component: TimeSheetCreateComponent},
-  { path: 'timeSheetCreate/:id', component: TimeSheetCreateComponent},
+  { path: 'userCreateEdit', component: CreateEditUserComponent},
+  { path: 'userCreateEdit/:id', component: CreateEditUserComponent},
+  { path: 'timeSheetCreateEdit', component: TimeSheetCreateComponent},
+  { path: 'timeSheetCreateEdit/:id', component: TimeSheetCreateComponent},
   { path: 'roles', component: RoleComponent},
   { path: 'createEditRole', component: CreateEditRoleComponent},
 ];

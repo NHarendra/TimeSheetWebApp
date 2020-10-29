@@ -1,1 +1,48 @@
-<p>users works!</p>
+<p-table [columns]="cols" [rowsPerPageOptions]="[5,10,20,50,100]" [value]="userObj" #dt [columns]="userObj"
+    sortMode="multiple" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Search here"
+                (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+        <div class="ui-helper-clearfix text-left">
+            <button type="button" class="btn btn-sm btn-success" (click)="dt.exportCSV()"><i
+                    class="fa fa-file"></i>ExportToExcel</button>
+
+        </div>
+        <div class="ui-helper-clearfix" style="text-align: right;">
+            <button type="button" class="btn btn-sm btn-primary" (click)="createNewUser()"><i
+                    class="fa fa-file"></i>Create New User</button>
+
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pResizableColumn>Action</th>
+            <th pResizableColumn>Name</th>
+            <th pResizableColumn>Designation</th>
+            <th pResizableColumn>Email</th>
+            <th pResizableColumn>Phone Number</th>
+            <th pResizableColumn>Active</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-userObj>
+        <tr>
+            <td> <a class="btn btn-success btn-sm" (click)="createNewUser(userObj.id)">Edit</a></td>
+            <td> {{userObj.fullName}} </td>
+            <td> {{userObj.designation}}</td>
+            <td> {{userObj.email}}</td>
+            <td> {{userObj.phoneNumber}}</td>
+            <td> {{userObj.isActive}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td colspan="6" class="text-center" [attr.rowspan]="columns.length">
+                No records found
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

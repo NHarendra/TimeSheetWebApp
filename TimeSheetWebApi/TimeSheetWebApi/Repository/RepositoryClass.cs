@@ -36,6 +36,7 @@ namespace TimeSheetWebApi.Repository
         public void Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
+            entities.Update(entity);
             context.SaveChanges();
         }
         public void Delete(int id)

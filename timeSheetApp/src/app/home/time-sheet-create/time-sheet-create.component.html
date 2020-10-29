@@ -3,12 +3,9 @@
     <div class="form-group row">
         <div class="col-lg-6 kt-margin-t-25">
             <label for="user">Select User <i class="text-danger">*</i></label>
-            <p-dropdown [options]="books" [(ngModel)]="timeSheetObj.userId" #exam_type="ngModel"
-            [style]="{'width':'100%','height':'37px','border-color':'#e2e5ec'}" placeholder="Select type"
-            [ngModelOptions]="{standalone: true}" required="true"></p-dropdown>
-            <!-- <p-dropdown  [options]="books" optionLabel="label"
-                [(ngModel)]="timeSheetObj.userId" [style]="{'width':'100%','height':'37px'}" placeholder="Select User"
-                required="true"></p-dropdown> -->
+            <p-dropdown [options]="userLookup" [(ngModel)]="timeSheetObj.userId" #exam_type="ngModel"
+                [style]="{'width':'100%','height':'37px','border-color':'#e2e5ec'}" placeholder="Select type"
+                [ngModelOptions]="{standalone: true}" required="true"></p-dropdown>
         </div>
 
         <div class="col-lg-6 kt-margin-t-25">
@@ -23,7 +20,7 @@
     <div class="form-group row">
         <div class="col-lg-6 kt-margin-t-25">
             <label for="time"> Start DateTime </label>
-            <p-calendar [(ngModel)]="timeSheetObj.startDateTime" [style]="{'width':'100%','height':'37px'}"
+            <p-calendar [(ngModel)]="startdtime" [style]="{'width':'100%','height':'37px'}"
                 showTime="true" [ngModelOptions]="{standalone: true}" hourFormat="24" [utc]="true"></p-calendar>
         </div>
     </div>

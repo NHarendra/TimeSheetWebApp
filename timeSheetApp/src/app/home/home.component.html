@@ -1,8 +1,5 @@
-
-
-
-
-<p-table [columns]="cols"  [rowsPerPageOptions]="[5,10,20,50,100]" [value]="timeSheetObj" #dt [columns]="timeSheetObj" sortMode="multiple"  [paginator]="true" [rows]="5">
+<p-table [columns]="cols" [rowsPerPageOptions]="[5,10,20,50,100]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
+    sortMode="multiple" [paginator]="true" [rows]="5">
     <ng-template pTemplate="caption">
         <div style="text-align: right">
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -16,7 +13,7 @@
         </div>
         <div class="ui-helper-clearfix" style="text-align: right;">
             <button type="button" class="btn btn-sm btn-primary" (click)="createNewTimeSheet()"><i
-                    class="fa fa-file"></i>New</button>
+                    class="fa fa-file"></i>Create New TimeSheet</button>
 
         </div>
     </ng-template>
@@ -35,28 +32,10 @@
             <td> <a class="btn btn-success btn-sm" (click)="createNewTimeSheet(timeSheetObj.id)">Edit</a></td>
             <td> {{timeSheetObj.userFk.fullName}} </td>
             <td> {{timeSheetObj.userFk.designation}}</td>
-            <td> {{timeSheetObj.startDateTime}}</td>
+            <td> {{timeSheetObj.startDateTime | date: 'dd/MM/yyyy'}}</td>
             <td> {{timeSheetObj.hoursWorked}}</td>
         </tr>
     </ng-template>
-
-
-    <!-- <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-  
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-timeSheetObj let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{user[col.field]}}
-            </td>
-        </tr>
-    </ng-template> -->
     <ng-template pTemplate="emptymessage" let-columns>
         <tr>
             <td colspan="5" class="text-center" [attr.rowspan]="columns.length">
@@ -64,7 +43,4 @@
             </td>
         </tr>
     </ng-template>
-    <!-- <ng-template pTemplate="summary" let-columns>
-        Total {{columns?.length}} Entries
-    </ng-template> -->
-  </p-table>
+</p-table>

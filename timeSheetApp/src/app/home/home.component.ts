@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
 
     // Columns initialized
     this.cols = [
-
       { field: 'name', header: 'Name' },
       { field: 'deignation', header: 'Deignation' },
       { field: 'startDateTime', header: 'StartDateTime' },
@@ -39,9 +38,9 @@ export class HomeComponent implements OnInit {
   // Function redirect to timesheet create or edit page  
   createNewTimeSheet(timeSheetId): void {
     if (timeSheetId > 0) {
-      this.router.navigate(['timeSheetCreate', timeSheetId]);
+      this.router.navigate(['timeSheetCreateEdit', timeSheetId]);
     } else {
-      this.router.navigate(['timeSheetCreate']);
+      this.router.navigate(['timeSheetCreateEdit']);
     }
   }
 

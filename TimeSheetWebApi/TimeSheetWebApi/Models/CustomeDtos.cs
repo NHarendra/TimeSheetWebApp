@@ -23,4 +23,11 @@ namespace TimeSheetWebApi.Models
         public virtual bool IsActive { get; set; }
 
     }
+
+    public class LookupDto
+    {
+        public int value { get; set; }
+
+        public string label { get; set; }
+    }
 }

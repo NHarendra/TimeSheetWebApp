@@ -56,21 +56,6 @@ namespace TimeSheetWebApi.Controllers
 
         /************************************ End all Curd logic from here **************************************************/
 
-        //[AllowAnonymous]
-        //[HttpPost]
-        //[Route("GetAllTimeSheetData")]
-        //public List<TimeSheetCustomeDtoReturn> GetAllTimeSheetData()
-        //{
-        //    TimeSheetCustomeDtoReturn retObj = new TimeSheetCustomeDtoReturn();
-        //    List<TimeSheetCustomeDtoReturn> retObjList = new List<TimeSheetCustomeDtoReturn>();
 
-        //    TimeSheetRepository.GetAll().Include("UserFk");
-
-
-
-
-
-        //    return retObjList;
-        //}
     }
 }

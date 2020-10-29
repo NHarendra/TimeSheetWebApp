@@ -30,7 +30,7 @@ namespace TimeSheetWebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<User> GetAllUsers() => UserRepository.GetAll().OrderByDescending(e => e.Id);
+        public IEnumerable<User> GetAllUsers() => UserRepository.GetAll().Where(w=>w.FullName != null && w.Email != null && w.Designation != null).OrderByDescending(e => e.Id);
 
         [HttpGet]
         [Route("{UserId}")]
@@ -52,5 +52,17 @@ namespace TimeSheetWebApi.Controllers
         public void DeleteUser(int UserId) => UserRepository.Delete(UserId);
 
         /************************************ End all Curd logic from here **************************************************/
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("GetUserLookup")]
+        public List<LookupDto> GetUserLookup()
+        {
+            LookupDto retObj = new LookupDto();
+            List<LookupDto> retObjList = new List<LookupDto>();
+            retObjList = UserRepository.GetAll().Where(w=>w.IsActive == true).Select(s=> new LookupDto { label=s.FullName,value=s.Id }).ToList();
+            return retObjList;
+        }
+
     }
 }
