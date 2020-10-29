@@ -1,5 +1,7 @@
+<!--Page Name -->
 <h4 class="under-below" style="color: blueviolet;">Time Sheet Create/Edit</h4>
 
+<!--Add/Edit Form Page -->
 <form style="margin-top: 40px;" #timeSheetForm="ngForm" (ngSubmit)="timeSheetForm.form.valid && saveTimeSheet()" autocomplete="off" novalidate>
 
     <div class="form-group row">
@@ -12,9 +14,10 @@
 
         <div class="col-lg-6 kt-margin-t-25">
             <label for="hoursworked"> Hours Worked <i class="text-danger">*</i> </label>
-            <input type="number" name="hoursworked " id="hoursworked" class="form-control" #hoursworkedControl="ngModel"
-                [(ngModel)]="timeSheetObj.hoursWorked" pattern="[0-9]*" required="true"
+            <input type="number" name="hourswork" id="hoursworked" class="form-control" #hoursworkedControl="ngModel"
+                [(ngModel)]="timeSheetObj.hoursWorked" min="1" pattern="^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$" required="true"
                 placeholder="Enter Worked Hours" />
+                <span class="text-danger" *ngIf="hoursworkedControl.hasError('pattern')">Please enter valid hours worked(must be enter positive value)</span>
         </div>
 
     </div>
@@ -22,8 +25,8 @@
     <div class="form-group row">
         <div class="col-lg-6 kt-margin-t-25">
             <label for="time"> Start DateTime </label>
-            <p-calendar [(ngModel)]="startdtime" [style]="{'width':'100%','height':'37px'}"
-                showTime="true" [ngModelOptions]="{standalone: true}" hourFormat="24" [utc]="true"></p-calendar>
+            <p-calendar [(ngModel)]="startdtime" hideOnDateTimeSelect="true" [style]="{'width':'100%','height':'37px'}"
+                showTime="true" [ngModelOptions]="{standalone: true}" hourFormat="12" [utc]="true"></p-calendar>
         </div>
     </div>
 

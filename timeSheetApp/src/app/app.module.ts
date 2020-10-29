@@ -14,8 +14,6 @@ import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import { CreateEditUserComponent } from './users/create-edit-user/create-edit-user.component';
 import { TimeSheetCreateComponent } from './home/time-sheet-create/time-sheet-create.component';
-import { RoleComponent } from './role/role.component';
-import { CreateEditRoleComponent } from './role/create-edit-role/create-edit-role.component';
 import { TimesheetService } from './timesheet.service';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
@@ -32,9 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     UsersComponent,
     HomeComponent,
     CreateEditUserComponent,
-    TimeSheetCreateComponent,
-    RoleComponent,
-    CreateEditRoleComponent,
+    TimeSheetCreateComponent
   ],
   imports: [
     BrowserModule,
