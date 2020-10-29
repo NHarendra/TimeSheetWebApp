@@ -2,8 +2,8 @@
     <button type="button" class="btn btn-sm btn-primary" (click)="createNewUser()"><i class="fa fa-file"></i>Create New
         User</button>
 </div>
-<p-table [columns]="cols" [rowsPerPageOptions]="[5,10,20,50,100]" [value]="userObj" #dt [columns]="userObj"
-    sortMode="multiple" [paginator]="true" [rows]="5" [exportFilename]="'UserReport'">
+<p-table [columns]="cols" [rowsPerPageOptions]="[5]" [value]="userObj" #dt [columns]="userObj"
+    sortMode="multiple" [paginator]="true" [rows]="7" [exportFilename]="'UserReport'">
 
     <ng-template pTemplate="caption">
         <div class="ui-helper-clearfix text-left">
