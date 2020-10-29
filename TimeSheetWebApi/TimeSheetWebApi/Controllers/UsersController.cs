@@ -30,7 +30,7 @@ namespace TimeSheetWebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<User> GetAllUsers() => UserRepository.GetAll();
+        public IEnumerable<User> GetAllUsers() => UserRepository.GetAll().OrderByDescending(e => e.Id);
 
         [HttpGet]
         [Route("{UserId}")]

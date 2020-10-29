@@ -18,9 +18,9 @@ namespace TimeSheetWebApi.Repository
             this.context = context;
             entities = context.Set<T>();
         }
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
-            return entities.AsEnumerable();
+            return entities.AsQueryable();
         }
         public T GetById(int id)
         {

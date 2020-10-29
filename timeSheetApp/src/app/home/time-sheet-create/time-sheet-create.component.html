@@ -1,1 +1,11 @@
-<p>time-sheet-create works!</p>
+<form #timeSheetForm="ngForm" (ngSubmit)="timeSheetForm.form.valid && saveTimeSheet()" autocomplete="off" novalidate>
+
+    <div class="form-group row">
+        <div class="col-lg-6 kt-margin-t-25">
+          <label for="user">Select User <i class="text-danger">*</i></label>
+     
+          </div>
+    </div>
+   
+
+</form>

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent},
   { path: 'createEditUser', component: CreateEditUserComponent},
   { path: 'timeSheetCreate', component: TimeSheetCreateComponent},
+  { path: 'timeSheetCreate/:id', component: TimeSheetCreateComponent},
   { path: 'roles', component: RoleComponent},
   { path: 'createEditRole', component: CreateEditRoleComponent},
 ];
