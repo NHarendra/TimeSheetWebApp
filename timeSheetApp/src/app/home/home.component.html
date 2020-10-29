@@ -3,7 +3,7 @@
         New TimeSheet</button>
 </div>
 <p-table [columns]="cols" [rowsPerPageOptions]="[5,10,20,50,100]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
-    sortMode="multiple" [paginator]="true" [rows]="5">
+    sortMode="multiple" [paginator]="true" [rows]="5" [exportFilename]="'TimeSheetReport'">
 
     <ng-template pTemplate="caption">
         <div class="ui-helper-clearfix text-left">
