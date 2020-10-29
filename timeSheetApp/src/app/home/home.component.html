@@ -1,21 +1,29 @@
+<div class="ui-helper-clearfix" style="text-align: right;margin-bottom: 10px;">
+    <button type="button" class="btn btn-sm btn-primary" (click)="createNewTimeSheet()"><i class="fa fa-file"></i>Create
+        New TimeSheet</button>
+</div>
 <p-table [columns]="cols" [rowsPerPageOptions]="[5,10,20,50,100]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
     sortMode="multiple" [paginator]="true" [rows]="5">
+
     <ng-template pTemplate="caption">
-        <div style="text-align: right">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="Search here"
-                (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
         <div class="ui-helper-clearfix text-left">
             <button type="button" class="btn btn-sm btn-success" (click)="dt.exportCSV()"><i
                     class="fa fa-file"></i>ExportToExcel</button>
 
         </div>
-        <div class="ui-helper-clearfix" style="text-align: right;">
-            <button type="button" class="btn btn-sm btn-primary" (click)="createNewTimeSheet()"><i
-                    class="fa fa-file"></i>Create New TimeSheet</button>
-
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Search"
+                (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
         </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+        </tr>
     </ng-template>
 
     <ng-template pTemplate="header">

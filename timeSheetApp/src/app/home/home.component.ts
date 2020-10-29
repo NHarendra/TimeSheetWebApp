@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
 
     // Columns initialized
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'deignation', header: 'Deignation' },
+      { field: 'userFk.fullName', header: 'Name' },
+      { field: 'userFk.designation', header: 'Designation' },
       { field: 'startDateTime', header: 'StartDateTime' },
       { field: 'hoursWorked', header: 'HoursWorked' },
     ];

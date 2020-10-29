@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   //Declare Global Variable
   userId: any;
   userObj: UserDto[];
+  cols: any[];
 
 
   //Constructor Call
@@ -19,6 +20,14 @@ export class UsersComponent implements OnInit {
 
   //Oninit Life Cycle hook started
   ngOnInit() {
+
+        // Columns initialized
+        this.cols = [
+          { field: 'fullName', header: 'Name' },
+          { field: 'designation', header: 'Deignation' },
+          { field: 'email', header: 'email' },
+          { field: 'phoneNumber', header: 'phoneNumber' },
+        ];
 
     // Fetch all users data 
     this.timeServiceProxy.getUsers().subscribe((data: any) => {
