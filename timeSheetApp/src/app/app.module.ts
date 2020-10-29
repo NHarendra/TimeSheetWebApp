@@ -19,7 +19,9 @@ import { CreateEditRoleComponent } from './role/create-edit-role/create-edit-rol
 import { TimesheetService } from './timesheet.service';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
-//import { CalendarModule } from "primeng/primeng";
+import {ChartModule} from 'primeng/chart';
+import { CalendarModule } from "primeng/primeng";
+import { EditorModule } from "primeng/primeng";
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import {DropdownModule} from 'primeng/dropdown';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    EditorModule,
     TableModule,
-    DropdownModule
-    //CalendarModule
+    DropdownModule,
+    ChartModule,
+    CalendarModule
   ],
   providers: [TimesheetService],
   bootstrap: [AppComponent]

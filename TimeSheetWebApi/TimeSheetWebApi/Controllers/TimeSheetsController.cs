@@ -28,7 +28,7 @@ namespace TimeSheetWebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<TimeSheet> GetAllTimeSheets() => TimeSheetRepository.GetAll().Include("UserFk");
+        public IEnumerable<TimeSheet> GetAllTimeSheets() => TimeSheetRepository.GetAll().Include("UserFk").OrderByDescending(w=>w.Id);
 
         [HttpGet]
         [Route("{TimeSheetId}")]
@@ -37,7 +37,12 @@ namespace TimeSheetWebApi.Controllers
         [HttpPost]
         [Route("")]
         [AllowAnonymous]
-        public void AddTimeSheet([FromBody] TimeSheet TimeSheet) => TimeSheetRepository.Insert(TimeSheet);
+        // public void AddTimeSheet([FromBody] TimeSheet TimeSheet) => TimeSheetRepository.Insert(TimeSheet);
+        public void AddTimeSheet([FromBody] TimeSheet TimeSheet)
+        {
+            TimeSheet.StartDateTime = Convert.ToDateTime(TimeSheet.StartDateTime).AddHours(5).AddMinutes(30);
+            TimeSheetRepository.Insert(TimeSheet);
+        }
 
         [HttpPut]
         [Route("")]

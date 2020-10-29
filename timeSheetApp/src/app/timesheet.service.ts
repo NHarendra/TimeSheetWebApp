@@ -43,27 +43,31 @@ export class TimesheetService {
       return this.http.get<TimeSheetDtoObject>(baseUrl+"/TimeSheets", httpOptions);
     }
 
+    postTimeSheet(model:TimeSheetDto): Observable<TimeSheetDtoObject> {
+      return this.http.post<TimeSheetDtoObject>(baseUrl+"/TimeSheets",model, httpOptions);
+    }
+
 
 
 
 }
 
 export interface IUserDto {
-  Id:number| undefined;
-  FullName: string | undefined;
-  Email: string | undefined;
-  PhoneNumber: string | undefined;
-  IsActive: boolean | undefined;
-  Designation: string | undefined;
+  id:number| undefined;
+  fullName: string | undefined;
+  email: string | undefined;
+  phoneNumber: string | undefined;
+  isActive: boolean | undefined;
+  designation: string | undefined;
 }
 
 export class UserDto implements IUserDto{
-  Id!: number| undefined;
-  FullName!: string | undefined;
-  Email!: string | undefined;
-  PhoneNumber!: string | undefined;
-  IsActive!: boolean | undefined;
-  Designation!: string | undefined;
+  id!: number| undefined;
+  fullName!: string | undefined;
+  email!: string | undefined;
+  phoneNumber!: string | undefined;
+  isActive!: boolean | undefined;
+  designation!: string | undefined;
 }
 
 export interface UserDtoObject {
@@ -78,17 +82,19 @@ export interface UserDtoObject {
 
 
 export interface ITimeSheetDto {
-  UserFk: UserDto | undefined;
-  StartDateTime: moment.Moment | undefined;
-  HoursWorked: number | undefined;
-  IsActive: boolean | undefined;
+  userFk: UserDto | undefined;
+  userId: number | undefined;
+  startDateTime: moment.Moment | undefined;
+  hoursWorked: number | undefined;
+  isActive: boolean | undefined;
 }
 
 export class TimeSheetDto implements ITimeSheetDto{
-  UserFk!: UserDto | undefined;
-  StartDateTime!: moment.Moment | undefined;
-  HoursWorked!: number | undefined;
-  IsActive!: boolean | undefined;
+  userFk!: UserDto | undefined;
+  userId!: number | undefined;
+  startDateTime!: moment.Moment | undefined;
+  hoursWorked!: number | undefined;
+  isActive!: boolean | undefined;
 }
 
 export interface TimeSheetDtoObject {
