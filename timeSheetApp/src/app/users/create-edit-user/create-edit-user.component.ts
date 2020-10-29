@@ -52,7 +52,8 @@ export class CreateEditUserComponent implements OnInit {
      
      if(this.userObj.id > 0){
       this.timeServiceProxy.updateUser(this.userObj).subscribe((data: any) => {
-        alert("data saved successfully!!")
+        this.router.navigate(['users']);
+        alert("data saved successfully!!");
       }, error => { console.log("Something went wrong") });
      }else{
       this.timeServiceProxy.postUser(this.userObj).subscribe((data: any) => {

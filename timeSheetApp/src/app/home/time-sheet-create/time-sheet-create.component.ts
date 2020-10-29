@@ -54,6 +54,7 @@ export class TimeSheetCreateComponent implements OnInit {
         if(this.timeSheetObj.id > 0){
         this.timeServiceProxy.updateTimeSheet(this.timeSheetObj).subscribe((data: any) => {
           this.timeSheetObj = data;
+          this.router.navigate(['home']);
           alert("data saved successfully!!")
         }, error => { console.log("Something went wrong") });
       }else{
