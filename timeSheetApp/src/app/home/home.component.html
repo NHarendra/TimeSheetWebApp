@@ -1,6 +1,7 @@
+
+<h4 class="under-below" style="color: blueviolet;">Time Sheet Report</h4>
 <div class="ui-helper-clearfix" style="text-align: right;margin-bottom: 10px;">
-    <button type="button" class="btn btn-sm btn-primary" (click)="createNewTimeSheet()"><i class="fa fa-file"></i>Create
-        New TimeSheet</button>
+    <button type="button" class="btn btn-sm btn-primary" (click)="createNewTimeSheet()"><i class="fa fa-file"></i>Create New TimeSheet</button>
 </div>
 <p-table [columns]="cols" [rowsPerPageOptions]="[5]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
     sortMode="multiple" [paginator]="true" [rows]="7" [exportFilename]="'TimeSheetReport'">
