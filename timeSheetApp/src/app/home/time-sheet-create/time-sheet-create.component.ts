@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeSheetCreateComponent implements OnInit {
 
+  books: Book[];
+  selectedBook: string;
   constructor() { }
 
   ngOnInit() {
+    this.books = [
+      {name: 'Book1', id: 1},
+      {name: 'Book2', id: 1},
+      {name: 'Book3', id: 1},
+      {name: 'Book4', id: 1},
+      {name: 'Book5', id: 1}
+  ];
   }
 
+}
+interface Book {
+  name: string;
+  id: number;
 }

@@ -18,6 +18,8 @@ import { RoleComponent } from './role/role.component';
 import { CreateEditRoleComponent } from './role/create-edit-role/create-edit-role.component';
 import { TimesheetService } from './timesheet.service';
 import { FormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng/dropdown';
+//import { CalendarModule } from "primeng/primeng";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    DropdownModule
+    //CalendarModule
   ],
   providers: [TimesheetService],
   bootstrap: [AppComponent]
