@@ -46,7 +46,7 @@ namespace TimeSheetWebApi
                 builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:4201").AllowCredentials();
+                .WithOrigins("http://localhost:4200").AllowCredentials();
             }));
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
