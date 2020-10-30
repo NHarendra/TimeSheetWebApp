@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimesheetService, UserDto } from '../timesheet.service';
+import { ErrorHandlerService, TimesheetService, UserDto } from '../timesheet.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppConsts } from '../appConstant';
 
@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
 
 
   //Constructor Call
-  constructor(private router: Router, private timeServiceProxy: TimesheetService, private toaster: ToastrService) { }
+  constructor(private errorHandler: ErrorHandlerService,private router: Router, private timeServiceProxy: TimesheetService, private toaster: ToastrService) { }
 
   //Oninit Life Cycle hook started
   ngOnInit() {
@@ -36,9 +36,13 @@ export class UsersComponent implements OnInit {
       this.userObj = data;
       this.toaster.success(AppConsts.successFetchDataMsg, '',
         { timeOut: 3000 });
-    }, error => {
-      this.toaster.error(AppConsts.errorMsg, '',
-        { timeOut: 3000 });
+    },
+    (error) => {
+      this.toaster.error(AppConsts.errorMsg, '',{ timeOut: 3000 });
+
+      //Exception Handling error from api we can capture here and display, for this repoen below code 
+       //this.errorHandler.handleError(error);
+       //this.toaster.error(this.errorHandler.errorMessage, '',{timeOut: 3000});
     });
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimeSheetDto, TimesheetService, UserDto } from 'src/app/timesheet.service';
+import { ErrorHandlerService, TimeSheetDto, TimesheetService, UserDto } from 'src/app/timesheet.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppConsts } from 'src/app/appConstant';
 
@@ -19,7 +19,7 @@ export class CreateEditUserComponent implements OnInit {
   
 
   //Constructor Call
-  constructor(private router: Router,  private route: ActivatedRoute, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
+  constructor(private errorHandler: ErrorHandlerService,private router: Router,  private route: ActivatedRoute, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
   //Onint life cycle hook started
   ngOnInit() {
@@ -42,8 +42,13 @@ export class CreateEditUserComponent implements OnInit {
         this.timeServiceProxy.getUser(parseInt(this.userId)).subscribe((data: any) => {
           this.userObj = data;
           this.toaster.success(AppConsts.successFetchDataMsg, '',{timeOut: 3000});
-        }, error => {
-          this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
+        },
+        (error) => {
+          this.toaster.error(AppConsts.errorMsg, '',{ timeOut: 3000 });
+    
+          //Exception Handling error from api we can capture here and display, for this repoen below code 
+           //this.errorHandler.handleError(error);
+           //this.toaster.error(this.errorHandler.errorMessage, '',{timeOut: 3000});
         });
       }
   }
@@ -61,16 +66,26 @@ export class CreateEditUserComponent implements OnInit {
       this.timeServiceProxy.updateUser(this.userObj).subscribe((data: any) => {
         this.router.navigate(['users']);
         this.toaster.success(AppConsts.successUpdatedMsg, '',{timeOut: 3000});
-      }, error => { 
-        this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
+      }, 
+      (error) => {
+        this.toaster.error(AppConsts.errorMsg, '',{ timeOut: 3000 });
+  
+        //Exception Handling error from api we can capture here and display, for this repoen below code 
+         //this.errorHandler.handleError(error);
+         //this.toaster.error(this.errorHandler.errorMessage, '',{timeOut: 3000});
       });
      }else{
       this.timeServiceProxy.postUser(this.userObj).subscribe((data: any) => {
         this.router.navigate(['users']);
         this.toaster.success(AppConsts.successSavedMsg, '',{timeOut: 3000});
-      }, error => { 
-        this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
-       });
+      }, 
+      (error) => {
+        this.toaster.error(AppConsts.errorMsg, '',{ timeOut: 3000 });
+  
+        //Exception Handling error from api we can capture here and display, for this repoen below code 
+         //this.errorHandler.handleError(error);
+         //this.toaster.error(this.errorHandler.errorMessage, '',{timeOut: 3000});
+      });
      }
 }
 }

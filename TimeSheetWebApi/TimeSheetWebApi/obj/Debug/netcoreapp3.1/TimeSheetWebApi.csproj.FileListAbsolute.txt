@@ -63,3 +63,4 @@ D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.dll
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.pdb
 D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.genruntimeconfig.cache
+D:\Innolat_Github_Repo\TimeSheetWebApp\TimeSheetWebApi\TimeSheetWebApi\obj\Debug\netcoreapp3.1\TimeSheetWebApi.csprojAssemblyReference.cache

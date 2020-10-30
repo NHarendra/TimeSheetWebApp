@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 
 // Http Options
@@ -66,6 +67,47 @@ export class TimesheetService {
   }
 
 }
+
+
+@Injectable()
+export class ErrorHandlerService {
+  public errorMessage: string = '';
+
+  constructor(private router: Router) { }
+
+  public handleError(error: HttpErrorResponse) {
+    if (error.status === 500) {
+      this.handle500Error(error);
+    }
+    else if (error.status === 404) {
+      this.handle404Error(error)
+    }
+    else {
+      this.handleOtherError(error);
+    }
+  }
+
+  private handle500Error(error: HttpErrorResponse) {
+    this.createErrorMessage(error);
+    this.router.navigate(['/500']);
+  }
+
+  private handle404Error(error: HttpErrorResponse) {
+    this.createErrorMessage(error);
+    this.router.navigate(['/404']);
+  }
+
+  private handleOtherError(error: HttpErrorResponse) {
+    this.createErrorMessage(error);
+    //TODO: this will be fixed later;
+  }
+
+  private createErrorMessage(error: HttpErrorResponse) {
+    this.errorMessage = error.error ? error.error : error.statusText;
+  }
+
+}
+
 
 export interface IUserDto {
   id: number | undefined;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimeSheetDto, TimesheetService } from '../timesheet.service';
+import { ErrorHandlerService, TimeSheetDto, TimesheetService } from '../timesheet.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppConsts } from '../appConstant';
 
@@ -12,7 +12,7 @@ import { AppConsts } from '../appConstant';
 export class HomeComponent implements OnInit {
 
   //Constructor Call
-  constructor(private router: Router, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
+  constructor(private errorHandler: ErrorHandlerService,private router: Router, private timeServiceProxy: TimesheetService,private toaster: ToastrService) { }
 
   // All Global Variables started
   timeSheetObj: TimeSheetDto[];
@@ -31,9 +31,13 @@ export class HomeComponent implements OnInit {
       }
       this.totalWorksCalculate(obj);
       this.toaster.success(AppConsts.successFetchDataMsg, '',{timeOut: 3000});
-     }, error => { 
+     }, (error) => { 
       this.toaster.error(AppConsts.errorMsg, '',{timeOut: 3000});
-     });
+
+      //Exception Handling error we can capture here and display for this repoen below code 
+       //this.errorHandler.handleError(error);
+       //this.toaster.error(this.errorHandler.errorMessage, '',{timeOut: 3000});
+    });
 
     // Columns initialized
     this.cols = [
@@ -46,6 +50,7 @@ export class HomeComponent implements OnInit {
   }
   //Oninit Life Cycle hook ended
 
+//pagination event catch for calculation
 paginate(event)
 {
   event.first;
@@ -55,8 +60,8 @@ paginate(event)
   }
   this.totalWorksCalculate(obj);
 }
-  //Filetr Calucation of work hours
-  onFilter(event,a) {
+//Filetr Calucation of work hours
+onFilter(event,a) {
     if(this.timeSheetObj.length == event.filteredValue.length){
       var obj = [];
       for (let i = 0; i < 7; i++) {
@@ -67,18 +72,18 @@ paginate(event)
       this.totalWorksCalculate(event.filteredValue);
     }
     
-  }
+}
 
   //calculate hours
-  totalWorksCalculate(timeSheetObjm: TimeSheetDto[]){
+totalWorksCalculate(timeSheetObjm: TimeSheetDto[]){
     this.totalHours = 0;
     for (let i = 0; i < timeSheetObjm.length; i++) {
       this.totalHours = timeSheetObjm[i].hoursWorked+ this.totalHours;
     }
-  }
+}
 
   // Function redirect to timesheet create or edit page  
-  createNewTimeSheet(timeSheetId): void {
+createNewTimeSheet(timeSheetId): void {
     if (timeSheetId > 0) {
       this.router.navigate(['timeSheetCreateEdit', timeSheetId]);
     } else {

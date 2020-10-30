@@ -8,7 +8,7 @@
 </div>
 
 <!--Data Table -->
-<p-table (onFilter)="onFilter($event, dt)" [columns]="cols" [rowsPerPageOptions]="[5]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
+<p-table (onFilter)="onFilter($event, dt)" [columns]="cols" [rowsPerPageOptions]="[7]" [value]="timeSheetObj" #dt [columns]="timeSheetObj"
     sortMode="multiple" [paginator]="true" (onPage)="paginate($event)" [rows]="7" [exportFilename]="'TimeSheetReport'">
 
     <ng-template pTemplate="caption">

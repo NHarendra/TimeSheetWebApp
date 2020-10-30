@@ -34,7 +34,7 @@ namespace TimeSheetWebApi.Controllers
             IEnumerable<TimeSheet> returnObj = null;
             try
             {
-                returnObj = TimeSheetRepository.GetAll().Include("UserFk").OrderByDescending(w => w.Id);
+               returnObj = TimeSheetRepository.GetAll().Include("UserFk").OrderByDescending(w => w.Id);
             }
             catch (Exception ex)
             {
